@@ -1,0 +1,67 @@
+/* Container styles */
+.container {
+    display: flex;
+    justify-content: flex-end; /* Aligns .trip-planner to the right */
+    padding: 19px; /* Adds some padding around the container */
+    margin-right: 0px; /* Adds some margin to the right of the container */
+    background-image: url('/public/Images/Find5.png');
+   
+
+.trip-planner {
+    max-width: 800px;
+    margin: 10% auto; 
+    margin-bottom: 10px;
+    margin-top: 1px;
+    display: lock;
+    padding: 30px;
+    background-color: #ccc7ea;
+    background-image: linear-gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+   
+}
+}
+
+.trip-planner h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+/* Input and Textarea styles */
+.trip-planner input[type="text"],
+.trip-planner input[type="date"],
+.trip-planner textarea {
+    width: 100%;
+    padding: 1px 8px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+/* Textarea specific styles */
+.trip-planner textarea {
+    height: 30px; /* Adjust height as needed */
+    resize: vertical; /* Allows the user to resize the textarea vertically */
+}
+
+/* Button styles */
+.trip-planner button {
+    width: 20%;
+    float: right;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 18px;
+    margin:0px 0;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 1.3px solid #020305;
+}
+
+.trip-planner button:hover {
+    background-color: #404d5b;
+}

@@ -1,0 +1,48 @@
+/* General layout adjustments for ProfileSetup based on .contact-form */
+.profile-setup {
+  max-width: 700px;
+  margin: 5px auto 80px; /* Slightly adjusted margins for top alignment */
+  padding: 90px; /* Increased padding for spacious layout */
+  background-color: #ccc7ea; /* Background color matching .contact-form */
+  background-image: linear-gradient(115deg, #f9f9fb 0%, #38B6FF 370%); /* Gradient matching .contact-form */
+  border-radius: 8px; /* Consistent rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Consistent shadow for depth */
+}
+
+/* Input fields styling harmonized with .contact-form */
+.profile-setup input,
+.profile-setup textarea {
+  width: 100%; /* Full width for alignment */
+  padding: 10px; /* Consistent padding */
+  margin-bottom: 20px; /* Spacing between fields */
+  border: 0.1px solid #0e0a0a; /* Subtle border matching .contact-form */
+  border-radius: 15px; /* Rounded corners for aesthetics */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Button styling harmonized with .contact-form */
+.profile-setup button {
+  font-size: 18px; /* Consistent font size */
+  font-weight: bold; /* Bold for emphasis */
+  padding: 10px 20px; /* Padding for comfort */
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* Contrast color for readability */
+  border: 1.3px solid #020305; /* Defined border */
+  border-radius: 40px; /* Smooth rounded corners for the button */
+  cursor: pointer; /* Pointer to indicate clickable */
+  transition: background-color 0.3s; /* Smooth transition on hover */
+  display: block; /* Ensure button spans the width */
+  width: 100%; /* Full width for consistency */
+  margin-top: 20px; /* Margin top for spacing */
+}
+
+/* Hover effect for button, matching .contact-form */
+.profile-setup button:hover {
+  background-color: #444; /* Darker shade on hover */
+}
+
+/* Adding a loading state style for the button, for usability */
+.profile-setup button:disabled {
+  background-color: #999; /* Greyed out to indicate not clickable */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}

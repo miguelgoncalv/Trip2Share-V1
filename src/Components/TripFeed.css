@@ -1,0 +1,93 @@
+.trip-feed-container {
+  max-width: 750px;
+  margin: 10% auto; 
+  margin-bottom: 80px;
+  margin-top: 0px;
+  display: lock;
+  padding: 30px;
+  background-color: #ccc7ea;
+  background-image: linear-gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.trip-feed-title {
+  text-align: center;
+  color: #040507; /* More vibrant color */
+  font-size: 28px; /* Larger font size */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.trip-entry {
+  background: #ffffff;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+  width: 100%; /* Responsive width */
+  max-width: 800px; /* Maximum width */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trip-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px; /* Add space between header and body */
+}
+
+.trip-body {
+  border-top: 1px solid #eaeaea; /* Optional: adds a line to separate the header and body */
+  padding-top: 10px;
+}
+
+.trip-entry:hover {
+  transform: translateY(-5px); /* Slight lift */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2); /* Enhanced shadow */
+}
+
+.trip-name, .trip-destination {
+  color: #020406; /* Unified vibrant color for consistency */
+  font-size: 20px;
+  font-weight: 600; /* Less bold for a modern look */
+  margin-bottom: 15px;
+}
+
+.trip-date {
+  color: #482d80;
+  font-size: 15px; /* Slightly larger for readability */
+  margin-bottom: 15px;
+}
+
+.trip-description {
+  color: #333;
+  font-size: 13px; /* Increased font size for better readability */
+  line-height: 1.5; /* Increased line height for better readability */
+  word-spacing: 1.1px; /* Slightly increased word spacing */
+}
+
+.trip-user-photo {
+  width: 80px; /* Adjust as needed */
+  height: 80px; /* Adjust as needed */
+  border-radius: 20%; /* Makes it circular */
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .trip-entry {
+      width: 100%; /* Full width for smaller screens */
+      padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .trip-feed-title {
+      font-size: 24px; /* Adjust title size for smaller screens */
+  }
+
+}

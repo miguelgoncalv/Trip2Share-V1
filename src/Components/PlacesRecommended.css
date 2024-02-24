@@ -1,0 +1,36 @@
+.places-recommended {
+  max-width: 500px; /* Control the width of this section */
+  margin: 0 auto; /* Center it within its parent */
+  padding: 0; /* Remove padding if you don’t want space inside this container */
+  background-color: transparent; /* Make background transparent or match the parent's background */
+  /* ...other styles... */
+}
+
+.places-recommended h2 {
+  font-size: 0.9rem; /* Adjust the font size */
+  margin-bottom: 20px; /* Adjust the space between the title and the entries */
+  /* ...other styles... */
+}
+
+.places-recommended p {
+  font-size: 0.7rem; /* Adjust the font size */
+  margin-bottom: 20px; /* Adjust the space between the text and the entries */
+  /* ...other styles... */
+}
+
+.place {
+  /* Remove any styling that creates a boxed appearance */
+  background-color: transparent; /* Make sure this is transparent or matches the parent's background */
+  box-shadow: none; /* Remove any shadow */
+  border: none; /* Remove borders */
+  margin-bottom: 10px; /* Adjust the space between entries */
+  padding: 0; /* Remove padding */
+  font-size: 0.9rem;
+}
+
+.place-image {
+  width: 100%; /* Full width of its parent */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners for the images */
+  /* Ensure no additional styling like borders or shadows */
+}
