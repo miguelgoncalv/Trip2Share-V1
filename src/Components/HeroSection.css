@@ -1,6 +1,8 @@
 .buttonStyle {
     width: 60%;
     padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
     border: none;
     border-radius: 15px;
     background-color: #007bff;

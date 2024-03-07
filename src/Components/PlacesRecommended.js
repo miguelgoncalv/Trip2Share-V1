@@ -28,7 +28,9 @@ function PlacesRecommended() {
       <h2>Places Recommended</h2>
       {places.map((place, index) => (
         <div key={index} className="place">
-          <img src={place.imagePath} alt={place.name} className="place-image" />
+          <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener noreferrer">
+  <img src={place.imagePath} alt={place.name} className="place-image" />
+</a>
           <h3>{place.name}</h3>
           <p>{place.description}</p>
         </div>

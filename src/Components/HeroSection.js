@@ -9,10 +9,10 @@ function HeroSection() {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '110vh', 
+    height: '90vh', 
     color: 'white',
     textAlign: 'center',
-    backgroundImage: "url('/Images/Banner.png')",
+    backgroundImage: "url('/Images/TravelBanner.png')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };

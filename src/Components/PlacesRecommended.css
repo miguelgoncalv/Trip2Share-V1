@@ -2,7 +2,7 @@
   max-width: 500px; /* Control the width of this section */
   margin: 0 auto; /* Center it within its parent */
   padding: 0; /* Remove padding if you don’t want space inside this container */
-  background-color: transparent; /* Make background transparent or match the parent's background */
+  background-color: white ; /* Make background transparent or match the parent's background */
   /* ...other styles... */
 }
 
