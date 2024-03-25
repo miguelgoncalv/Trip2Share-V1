@@ -15,6 +15,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Contexts/AuthContext';
 import PrivacyPolicy from './Components/PrivacyPolicy';
 import PlacesRecommended from './Components/PlacesRecommended';
+import ChatRoom from './Components/ChatRoom';
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
           <Route path="/" element={
             <>
               <HeroSection />
-              <SignUp />
               <ImageCarousel />
+         
+              
               
             </>
           } />
@@ -36,6 +38,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/placesrecommended" element={<PlacesRecommended />} />
+          <Route path="/chatroom/:chatId" element={<ChatRoom />} />
+
 
           {/* Protected routes */}
 

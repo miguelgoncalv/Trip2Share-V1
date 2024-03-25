@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
+
+
 function NavBar() {
   const [faded, setFaded] = useState(false);
   const [user, setUser] = useState(null); // State to hold the user's info
@@ -70,13 +72,17 @@ function NavBar() {
               <Link to="/homepage">Find an Adventure</Link>
             </li>
             <li>
+            <Link to="/chats">Chats</Link>
+             </li>
+            <li>
               <Link to="/about">About Us</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>
             </li>
             <li>
-              <button onClick={logout} style={{ cursor: 'pointer' }}>Logout</button>
+              <button onClick={logout} style={{ cursor: 'pointer' }}><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z"/></svg>
+              </button>
             </li>
             
           </>

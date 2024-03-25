@@ -6,7 +6,7 @@
     align-items: flex-start; /* Ensure items align at the top */
     gap: 20px; /* Slightly increased gap for better spacing */
     padding: 20px;
-    background-color: #f0f2f5; /* Soft, neutral background for easy viewing */
+    background-image: linear-gradient(130deg,#f9f9fb 0%, #38B6FF 350% ); /* Soft, neutral background for easy viewing */
     margin-top: 20px;
 }
 
@@ -43,7 +43,7 @@
 .places-recommended {
     flex: 0 0 15%; /* Flex basis of 15%, no growth, no shrink */
     padding: 15px;
-    background-color: #f5f5f5;
+    background-color: gradient (115deg, #9999b5 0%, #38B6FF 70%);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     display: flex;

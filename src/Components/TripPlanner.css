@@ -2,24 +2,18 @@
 .container {
     display: flex;
     justify-content: flex-end; /* Aligns .trip-planner to the right */
-    padding: 19px; /* Adds some padding around the container */
+    padding: 10px; /* Adds some padding around the container */
     margin-right: 0px; /* Adds some margin to the right of the container */
     background-image: url('/public/Images/Find5.png');
-   
+}
 
 .trip-planner {
-    max-width: 800px;
-    margin: 10% auto; 
-    margin-bottom: 10px;
-    margin-top: 1px;
-    display: lock;
+    max-width: 950px;
+    margin: 2% auto;
     padding: 30px;
-    background-color: #ccc7ea;
-    background-image: linear-gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
+    background: linear-gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-   
-}
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
 }
 
 .trip-planner h2 {

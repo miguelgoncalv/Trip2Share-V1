@@ -1,16 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, addDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, query, where, doc as firestoreDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { db } from '../firebase-config';
 import { useAuth } from '../Contexts/AuthContext';
-import { serverTimestamp } from 'firebase/firestore';
 import './TripFeed.css';
+import { useNavigate } from 'react-router-dom';
 
 function TripFeed() {
     const [trips, setTrips] = useState([]);
     const [comments, setComments] = useState({});
     const [newCommentText, setNewCommentText] = useState({});
     const { currentUser } = useAuth();
+    const navigate = useNavigate();
+
+    // Moved outside useEffect as it doesn't depend on the lifecycle hook
+    const findOrCreateChat = async (currentUserId, otherUserId) => {
+        const chatsRef = collection(db, "chats");
+        const q = query(chatsRef, where("userIds", "array-contains", currentUserId));
+
+        const querySnapshot = await getDocs(q);
+        let chatDoc = querySnapshot.docs.find(doc => doc.data().userIds.includes(otherUserId));
+
+        if (chatDoc) {
+            return chatDoc.id; // Existing chat found
+        } else {
+            // Create a new chat
+            const chatData = {
+                userIds: [currentUserId, otherUserId],
+                createdAt: serverTimestamp(),
+            };
+            const docRef = await addDoc(collection(db, "chats"), chatData);
+            return docRef.id; // Return the new chat ID
+        }
+    };
+
+    const handlePrivateMessage = async (tripUserId) => {
+        if (!currentUser) {
+            console.log("User not logged in");
+            return;
+        }
+
+        let chatId = await findOrCreateChat(currentUser.uid, tripUserId);
+        navigate(`/chatroom/${chatId}`);
+    };
 
     useEffect(() => {
         const getTripsAndComments = async () => {
@@ -31,30 +63,34 @@ function TripFeed() {
 
             setTrips(tripsWithPhotos);
 
-            // Fetch comments for each trip and include user profile pictures
             for (let trip of tripsWithPhotos) {
                 const commentsSnapshot = await getDocs(query(collection(db, "comments"), where("tripId", "==", trip.id)));
-                const commentsWithUserPhotos = await Promise.all(commentsSnapshot.docs.map(async (doc) => {
+                const commentsWithUserDetails = await Promise.all(commentsSnapshot.docs.map(async (doc) => {
                     const comment = doc.data();
-                    try {
-                        // Assuming each comment includes a userId field
-                        const userPhotoRef = ref(storage, `profiles/${comment.userId}/profilePic`);
-                        comment.userPhotoURL = await getDownloadURL(userPhotoRef);
-                    } catch {
-                        comment.userPhotoURL = './Images/user.png'; // Fallback image
+                    let userPhotoURL = './Images/user.png';
+                    let userName = 'Anonymous';
+                    if (comment.userId) {
+                        try {
+                            const userDocRef = firestoreDoc(db, "users", comment.userId);
+                            const userDocSnap = await getDoc(userDocRef);
+                            if (userDocSnap.exists()) {
+                                userName = userDocSnap.data().displayName || 'Anonymous';
+                                const userPhotoRef = ref(storage, `profiles/${comment.userId}/profilePic`);
+                                userPhotoURL = await getDownloadURL(userPhotoRef);
+                            }
+                        } catch (error) {
+                            console.error("Error fetching user details", error);
+                        }
                     }
-                    return comment;
+                    return { ...comment, userPhotoURL, userName, id: doc.id };
                 }));
-    
-                setComments((prevComments) => ({
-                    ...prevComments,
-                    [trip.id]: commentsWithUserPhotos
-                }));
+
+                setComments(prevComments => ({ ...prevComments, [trip.id]: commentsWithUserDetails }));
             }
         };
-    
+
         getTripsAndComments();
-    }, []);
+    }, [currentUser]);
 
     const handleNewCommentChange = (tripId, text) => {
         setNewCommentText({ ...newCommentText, [tripId]: text });
@@ -62,29 +98,24 @@ function TripFeed() {
 
     const handleAddComment = async (tripId) => {
         if (!newCommentText[tripId] || !currentUser) return;
-    
+
         const newComment = {
             tripId,
             text: newCommentText[tripId],
-            userId: currentUser.uid, // Include the user ID
-            createdAt: serverTimestamp() // Use Firebase server timestamp
+            userId: currentUser.uid,
+            createdAt: serverTimestamp(),
         };
-    
-        // Add a new comment to the "comments" collection
-        const commentRef = await addDoc(collection(db, "comments"), newComment);
-    
-        // Clear the comment input field and update comments state
-        setNewCommentText(prevText => ({ ...prevText, [tripId]: '' }));
-        setComments(prevComments => ({
-            ...prevComments,
-            [tripId]: [...(prevComments[tripId] || []), { ...newComment, id: commentRef.id }]
-        }));
+
+        await addDoc(collection(db, "comments"), newComment);
+        setNewCommentText(prev => ({ ...prev, [tripId]: '' }));
+
+        // Optimally, here you'd update just the new comment rather than refetching all comments for efficiency.
+        // This example is simplified and may not be the most efficient for a real application.
     };
-    
 
     return (
         <div className="trip-feed-container">
-            <h2 className="trip-feed-title">Join Adventures</h2>
+                        <h2 className="trip-feed-title">Join Adventures</h2>
             {trips.map((trip) => (
                 <div key={trip.id} className="trip-entry">
                     <div className="trip-header">
@@ -100,7 +131,8 @@ function TripFeed() {
                         <div className="comments-section">
                             {comments[trip.id] && comments[trip.id].map((comment, index) => (
                                 <div key={index} className="comment">
-                                    <p>{comment.text}</p>
+                                    <img src={comment.userPhotoURL} alt="User" className="comment-user-photo"/> {/* Display user photo */}
+                                    <p><strong>{comment.userName}:</strong> {comment.text}</p>
                                 </div>
                             ))}
                             <input
@@ -110,6 +142,8 @@ function TripFeed() {
                                 onChange={(e) => handleNewCommentChange(trip.id, e.target.value)}
                             />
                             <button onClick={() => handleAddComment(trip.id)}>Comment</button>
+                            {/* Button for sending private messages */}
+                            <button onClick={() => handlePrivateMessage(trip.userId)} style={{marginLeft: "10px"}}>Send Private Message</button>
                         </div>
                     </div>
                 </div>
@@ -119,3 +153,4 @@ function TripFeed() {
 }
 
 export default TripFeed;
+

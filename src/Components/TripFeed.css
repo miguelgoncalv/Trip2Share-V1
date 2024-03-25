@@ -1,5 +1,5 @@
 .trip-feed-container {
-  max-width: 750px;
+  max-width: 950px;
   margin: 2% auto;
   padding: 30px;
   background: linear-gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
@@ -16,10 +16,16 @@
   margin-bottom: 20px;
 }
 
-.trip-entry, .comments-section, .comment {
+.trip-entry {
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.comments-section {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid #fefcfc;
+  background-color: gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
 }
 
 .trip-entry {
@@ -38,12 +44,22 @@
   margin-bottom: 10px;
 }
 
-.trip-user-photo, .comment-user-photo { 
+.trip-user-photo { 
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 20px;
   margin-right: 15px;
   object-fit: cover;
+}
+
+.comment-user-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-right: 15px;
+  margin-left: 15px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .trip-name {
@@ -53,7 +69,7 @@
 }
 
 .trip-destination {
-  color: #007bff;
+  color: #030405;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -72,7 +88,8 @@
 .comments-section {
   margin-top: 10px;
   padding-top: 5px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #fefcfc;
+  background-color: gradient(115deg, #f9f9fb 0%, #38B6FF 370%);
 }
 
 .comment {
@@ -82,31 +99,39 @@
   border-bottom: 1px solid #eee;
 }
 
-.comments-section p, .comment-input, .comment-button {
+.comments-section p {
   margin-left: 10px;
   color: #040101;
   font-size: 14px;
   border-radius: 15px;
+  
 }
 
-.comment-input {
-  width: 100%;
+.comments-section input {
+  width: 35%;
   padding: 10px;
   margin-top: 10px;
-  border: 1px solid #ccc;
+  margin-left: 10px;
+  border: 1px solid #1a0d0d;
+  border-radius: 15px;
+  font: Playfer Display, serif;
 }
 
-.comment-button {
+.comments-section button {
+  padding: 10px;
   background-color: #007bff;
   color: white;
-  font-weight: bold;
+  font-weight: normal;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 15px;
+  border: 1px solid #010203;
+  margin-left: 15px;
 }
 
-.comment-button:hover {
-  background-color: #0056b3;
+.comments-section button:hover {
+  background-color: #334456;
 }
 
 @media (max-width: 768px) {

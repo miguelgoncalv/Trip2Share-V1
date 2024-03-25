@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom'; // useHistory is not used, so we only keep useNavigate
@@ -7,10 +7,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [gender, setGender] = useState('');
-  const [pronouns, setPronoums] = useState('');
-  const [nationality, setNationality] = useState('');
-  const [languages, setLanguages] = useState('');
+
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Use navigate for redirection
 
@@ -57,34 +54,7 @@ function SignUp() {
             placeholder="Password"
             required
           />
-          <input
-            type="text"
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
-            placeholder="Gender"
-            required
-          />
-          <input
-            type="text"
-            value={pronouns}
-            onChange={(e) => setPronoums(e.target.value)}
-            placeholder="Pronouns"
-            required
-          />
-          <input
-            type="text"
-            value={nationality}
-            onChange={(e) => setNationality(e.target.value)}
-            placeholder="Nationality"
-            required
-          />
-          <input
-            type="text"
-            value={languages}
-            onChange={(e) => setLanguages(e.target.value)}
-            placeholder="Languages Spoken"
-            required
-          />
+          <p>By signing up, you agree to our Terms and Conditions.</p>
           <button type="submit">Sign Up</button>
         </form>
       </div>
